@@ -1,9 +1,7 @@
-<p align="center">
-  <strong>Odyssey Mentor</strong>
-</p>
+<h1 align="center">Odyssey Mentor</h1>
 
 <p align="center">
-  A professional life/career mentor, built as a Claude Code Skill — not a chatbot that gives generic advice, a structured process that gets you from "I don't know what I want" to a chosen direction and a dated next step.
+  A structured life and career mentoring skill for Claude Code — moves a person from uncertainty to a chosen direction and a dated next action, using named, cited frameworks rather than generic encouragement.
 </p>
 
 <p align="center">
@@ -26,11 +24,11 @@
 
 ## What it does
 
-Most "career mentor" prompts are a personality wrapped around generic encouragement. This skill is a process: four phases (Ground → Imagine → Evaluate → Build), each backed by a named framework, each with explicit exit criteria, and a state file (`odyssey.md`) that survives across sessions so the work isn't lost when the conversation ends.
+Career-mentoring prompts typically amount to a personality wrapped around generic encouragement. This skill is a process instead: four phases (Ground → Imagine → Evaluate → Build), each backed by a named framework, each with explicit exit criteria, and a state file (`odyssey.md`) that persists across sessions so the work survives beyond a single conversation.
 
 <table>
 <tr>
-<th width="50%">Generic chatbot</th>
+<th width="50%">Unstructured prompting</th>
 <th width="50%">Odyssey Mentor</th>
 </tr>
 <tr>
@@ -49,23 +47,25 @@ Most "career mentor" prompts are a personality wrapped around generic encouragem
 </tr>
 </table>
 
-It also corrects a widely repeated mistake: the "ikigai" Venn diagram (love / good at / paid for / world needs) is not ancient Japanese wisdom — it's a 2014 Western remix. This skill uses the real concept instead, and says so. See [`references/ikigai.md`](references/ikigai.md).
+The skill also corrects a widely repeated inaccuracy: the "ikigai" Venn diagram (love / good at / paid for / world needs) is not traditional Japanese thought — it is a 2014 Western remix of a 2011 diagram. This skill applies the authentic concept instead, and states the correction explicitly. See [`references/ikigai.md`](references/ikigai.md).
 
 > [!NOTE]
 > This is direction-level clarity work — figuring out *what* to pursue and the first real step toward it. It is not a CV/interview-mechanics tool or a single tactical decision-maker.
 
 ## Install: add it to your skills arsenal
 
+Once this repository is published on GitHub:
+
 ```bash
 npx skills add DasonTiovino/odyssey
 ```
 
-That's the whole install, same one-liner [caveman](https://github.com/JuliusBrussee/caveman) uses — it's not caveman-specific tooling, it's [`skills` / skills.sh](https://github.com/vercel-labs/skills), a generic installer that fetches `SKILL.md` from any GitHub repo and drops it into `~/.claude/skills/` (or the equivalent directory for 40+ other compatible agents). It requires this repo to actually be pushed to GitHub first, though — a local, unpublished folder has nothing for that command to fetch.
+This installs through [`skills`](https://github.com/vercel-labs/skills), a standard package manager for agent skills. It fetches `SKILL.md` from the given repository and places it in `~/.claude/skills/` (or the equivalent directory for other compatible agents). It requires the repository to be pushed to GitHub — a local, unpublished folder has nothing for the command to fetch.
 
 <details>
-<summary><strong>No GitHub push yet, or installing from a local copy instead</strong></summary>
+<summary><strong>Installing before publishing, or from a local copy</strong></summary>
 
-Claude Code auto-discovers skills from `~/.claude/skills/` on its own — any folder there with a valid `SKILL.md` becomes available immediately, no registration step:
+Claude Code auto-discovers skills from `~/.claude/skills/` directly — any folder there with a valid `SKILL.md` becomes available immediately, with no separate registration step:
 
 ```bash
 # 1. Land the whole skill folder under ~/.claude/skills/
@@ -78,7 +78,7 @@ head -n 3 ~/.claude/skills/odyssey-mentor/SKILL.md
 #    in its available-skills context automatically.
 ```
 
-Prefer the folder to double as a git-tracked, publishable repo instead of a dead copy? Symlink it in rather than copying:
+To keep the installed copy git-tracked and publishable rather than a static duplicate, symlink it instead of copying:
 
 ```bash
 ln -s /path/to/your/odyssey-mentor-repo ~/.claude/skills/odyssey-mentor
@@ -158,7 +158,7 @@ If you're extending your own arsenal beyond this one skill, the pattern that hel
 2. **Frontmatter `description` is the trigger.** Write it to include the phrases someone would actually say ("I don't know what I want," not just "career mentoring"), plus what it's *not* for — that second part prevents false-positive triggering.
 3. **Persist state to a file, not the conversation.** Anything that needs to survive a compacted or new session belongs in a project-root artifact file with a template and explicit update rules — see [`references/odyssey-artifact.md`](references/odyssey-artifact.md) for the pattern.
 4. **Name the anti-patterns, not just the happy path.** Every phase file here has an "Anti-patterns" section naming the specific failure mode and the exact redirect — that's what turns a vague instruction into a followable one.
-5. **Write eval scenarios before you trust it.** [`evals/scenarios.md`](evals/scenarios.md) — input, expected behavior, prohibited behavior, run manually against a fresh session. Cheap insurance against a skill that sounds right and behaves wrong.
+5. **Write eval scenarios before you trust it.** [`evals/scenarios.md`](evals/scenarios.md) — input, expected behavior, prohibited behavior, run manually against a fresh session. Low-cost verification against a skill that reads correctly but behaves incorrectly.
 6. **Cite before you assert.** If a skill leans on a named framework, verify it (don't recall it from training data alone) and correct it in the skill itself when the popular version is wrong — see [`references/ikigai.md`](references/ikigai.md) for what that looks like in practice.
 
 ## License
