@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/type-Claude_Code_Skill-5A31F4" alt="Claude Code Skill">
   <img src="https://img.shields.io/badge/framework-Odyssey_Plan_%2B_GROW_%2B_Graduate_Capital-blue" alt="Frameworks">
   <img src="https://img.shields.io/badge/sources-8_cited-informational" alt="8 cited sources">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
 </p>
 
 <p align="center">
@@ -56,15 +56,16 @@ It also corrects a widely repeated mistake: the "ikigai" Venn diagram (love / go
 
 ## Install: add it to your skills arsenal
 
-Claude Code (and most compatible agents) auto-discover skills from `~/.claude/skills/`. Any folder there containing a `SKILL.md` with valid frontmatter becomes available automatically — no registration step, no restart required for new sessions.
-
-**If you already have this folder** (e.g. you're reading this from inside `~/.claude/skills/odyssey-mentor/`), you're done — it's already live. Confirm with:
-
 ```bash
-ls ~/.claude/skills/odyssey-mentor/SKILL.md   # should exist
+npx skills add DasonTiovino/odyssey
 ```
 
-**If you're copying it from elsewhere** (another machine, a repo, a zip someone sent you):
+That's the whole install, same one-liner [caveman](https://github.com/JuliusBrussee/caveman) uses — it's not caveman-specific tooling, it's [`skills` / skills.sh](https://github.com/vercel-labs/skills), a generic installer that fetches `SKILL.md` from any GitHub repo and drops it into `~/.claude/skills/` (or the equivalent directory for 40+ other compatible agents). It requires this repo to actually be pushed to GitHub first, though — a local, unpublished folder has nothing for that command to fetch.
+
+<details>
+<summary><strong>No GitHub push yet, or installing from a local copy instead</strong></summary>
+
+Claude Code auto-discovers skills from `~/.claude/skills/` on its own — any folder there with a valid `SKILL.md` becomes available immediately, no registration step:
 
 ```bash
 # 1. Land the whole skill folder under ~/.claude/skills/
@@ -76,6 +77,14 @@ head -n 3 ~/.claude/skills/odyssey-mentor/SKILL.md
 # 3. Start (or restart) a Claude Code session — it should list `odyssey-mentor`
 #    in its available-skills context automatically.
 ```
+
+Prefer the folder to double as a git-tracked, publishable repo instead of a dead copy? Symlink it in rather than copying:
+
+```bash
+ln -s /path/to/your/odyssey-mentor-repo ~/.claude/skills/odyssey-mentor
+```
+
+</details>
 
 **Using it:**
 
@@ -154,4 +163,4 @@ If you're extending your own arsenal beyond this one skill, the pattern that hel
 
 ## License
 
-MIT — the skill's instructions and templates are free to copy, adapt, and redistribute. The cited frameworks (Odyssey Plan, GROW, Graduate Capital Model, etc.) remain the intellectual property of their original authors; this skill applies and references them, it doesn't republish their source material.
+[MIT](./LICENSE) — the skill's instructions and templates are free to copy, adapt, and redistribute. The cited frameworks (Odyssey Plan, GROW, Graduate Capital Model, etc.) remain the intellectual property of their original authors; this skill applies and references them, it doesn't republish their source material.
